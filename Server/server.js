@@ -22,6 +22,9 @@ app.get('/', (req, res) => {
 
 const authRoutes = require('./routes/authroutes');
 app.use('/api/auth', authRoutes);
+
+const proroutes=require('./routes/protectedroute');
+app.use('/api/protected',proroutes);
   
   
 
