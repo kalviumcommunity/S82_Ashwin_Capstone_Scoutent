@@ -1,0 +1,23 @@
+meta {
+  name: Put endpoint
+  type: http
+  seq: 6
+}
+
+post {
+  url: http://localhost:5000/api/auth/login
+  body: json
+  auth: none
+}
+
+headers {
+  content-type: application/json
+}
+
+body:json {
+  {
+    "email":"poier32@gmail.com",
+    "currentPassword":"user213"
+    
+  }
+}
