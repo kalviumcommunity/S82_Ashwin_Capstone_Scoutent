@@ -28,6 +28,8 @@ app.use('/api/auth', authRoutes);
 
 const proroutes=require('./routes/protectedroute');
 app.use('/api/protected',proroutes);
+
+
   
   
 
