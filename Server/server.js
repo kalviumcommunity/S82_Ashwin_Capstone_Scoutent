@@ -12,22 +12,6 @@ mongoose.connect(process.env.MONGO_URI)
 
 
 
-const userRoutes = require('./routes/userroutes');
-app.use('/api/users', userRoutes);
-
-const userroutes=require('./routes/userroutes');
-app.use('/api/user',userroutes);
-
-
-app.get('/', (req, res) => {
-    res.send('API is running...');
-  });
-
-const authRoutes = require('./routes/authroutes');
-app.use('/api/auth', authRoutes);
-
-const proroutes=require('./routes/protectedroute');
-app.use('/api/protected',proroutes);
 
 
   
