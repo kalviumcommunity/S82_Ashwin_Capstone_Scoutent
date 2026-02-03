@@ -7,7 +7,7 @@ const jwt =require('jsonwebtoken')
 const authcontroller=require('../Controller/authcontroller');
 
 require('dotenv').config();
-jest.setTimeout(10000); // Optional if still slow
+jest.setTimeout(10000); 
 
 beforeAll(async () => {
   await mongoose.connect(process.env.MONGO_URI, {
@@ -93,7 +93,3 @@ it('should not update password if current password is wrong', async () => {
   expect(res.statusCode).toBe(400);
   expect(res.body.message).toBe('Current password is incorrect');
 });
-
-
-
-
