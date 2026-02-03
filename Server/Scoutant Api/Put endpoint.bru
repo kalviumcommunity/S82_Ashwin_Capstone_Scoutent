@@ -4,8 +4,8 @@ meta {
   seq: 6
 }
 
-post {
-  url: http://localhost:5000/api/auth/login
+put {
+  url: http://localhost:5000/api/auth/password
   body: json
   auth: none
 }
@@ -16,8 +16,10 @@ headers {
 
 body:json {
   {
-    "email":"poier32@gmail.com",
-    "currentPassword":"user213"
+    
+    "id": "6825b86ec554062dfff4478a",
+    "currentPassword":"1234",
+    "newPassword":"ryt1"
     
   }
 }

@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import playerhomepage from "./playerHomepage";
 import Footer from "../components/footer";
 
+
 export default function LoginPage() {
   const [formData, setFormData] = useState({ email: "", password: "" });
 
@@ -13,23 +14,23 @@ export default function LoginPage() {
   };
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
-  e.preventDefault();
-  try {
-    const res = await axios.post("/auth/login", formData);
-    alert("Login successful");
-    localStorage.setItem("token", res.data.token);
-    
-    // Redirect based on role:
-    if (res.data.user.role === "scout") {
-      navigate("/scouthomepage");
-    } else if (res.data.user.role === "player") {
-      navigate("/playerhomepage");
-    } else {
-      navigate("/"); // fallback
+    e.preventDefault();
+    try {
+      const res = await axios.post("/auth/login", formData);
+      alert("Login successful");
+      localStorage.setItem("token", res.data.token);
+
+      // Redirect based on role:
+      if (res.data.user.role === "scout") {
+        navigate("/scouthomepage");
+      } else if (res.data.user.role === "player") {
+        navigate("/playerhomepage");
+      } else {
+        navigate("/"); // fallback
+      }
+    } catch (err) {
+      alert(err.response?.data?.message || "Login failed");
     }
-  } catch (err) {
-    alert(err.response?.data?.message || "Login failed");
-  }
   };
 
   return (
@@ -79,13 +80,13 @@ export default function LoginPage() {
           className="w-full bg-white text-black transition duration-300 rounded-md py-3 text-lg font-semibold shadow-md mt-4"
         >
           Login
-        
+
         </motion.button>
       </motion.form>
       <div className="absolute bottom-0 w-full z-10">
-                <Footer />
-              </div>
+        <Footer />
+      </div>
     </motion.div>
-    
+
   );
 }
