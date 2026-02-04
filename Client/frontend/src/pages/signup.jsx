@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { GoogleLogin } from '@react-oauth/google';
 import { motion } from "framer-motion";
 import axios from "../utils/axiosInstance";
 import Footer from "../components/footer";
@@ -85,8 +86,8 @@ export default function SignUpPage() {
               whileTap={{ scale: 0.98 }}
               onClick={() => setRole("player")}
               className={`py-3 rounded-xl font-bold text-sm tracking-wide transition-all duration-300 border ${role === "player"
-                  ? "bg-white text-black border-white shadow-lg shadow-white/10"
-                  : "bg-transparent text-gray-400 border-white/20 hover:border-white/50 hover:text-white"
+                ? "bg-white text-black border-white shadow-lg shadow-white/10"
+                : "bg-transparent text-gray-400 border-white/20 hover:border-white/50 hover:text-white"
                 }`}
             >
               PLAYER
@@ -97,8 +98,8 @@ export default function SignUpPage() {
               whileTap={{ scale: 0.98 }}
               onClick={() => setRole("scout")}
               className={`py-3 rounded-xl font-bold text-sm tracking-wide transition-all duration-300 border ${role === "scout"
-                  ? "bg-white text-black border-white shadow-lg shadow-white/10"
-                  : "bg-transparent text-gray-400 border-white/20 hover:border-white/50 hover:text-white"
+                ? "bg-white text-black border-white shadow-lg shadow-white/10"
+                : "bg-transparent text-gray-400 border-white/20 hover:border-white/50 hover:text-white"
                 }`}
             >
               SCOUT
@@ -113,6 +114,33 @@ export default function SignUpPage() {
           >
             SIGN UP
           </motion.button>
+
+          <div className="flex items-center justify-center mt-4 w-full">
+            <GoogleLogin
+              onSuccess={async (credentialResponse) => {
+                try {
+                  const res = await axios.post("/auth/google", {
+                    token: credentialResponse.credential,
+                    role: role || 'player' // Pass selected role if any
+                  });
+                  localStorage.setItem("token", res.data.token);
+                  alert("Google Signup Successful");
+                  if (res.data.user.role === "scout") {
+                    navigate("/scouthomepage");
+                  } else {
+                    navigate("/playerhomepage");
+                  }
+                } catch (err) {
+                  console.log(err);
+                  alert("Google Signup Failed");
+                }
+              }}
+              onError={() => {
+                console.log('Signup Failed');
+                alert("Google Signup Failed");
+              }}
+            />
+          </div>
         </motion.form>
       </motion.div>
       <Footer />
