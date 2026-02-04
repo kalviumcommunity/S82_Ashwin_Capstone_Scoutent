@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { GoogleLogin } from '@react-oauth/google';
 import { motion } from "framer-motion";
 import axios from "../utils/axiosInstance";
 import { useNavigate } from "react-router-dom";
@@ -82,6 +83,34 @@ export default function LoginPage() {
           Login
 
         </motion.button>
+
+        <div className="flex items-center justify-center mt-4">
+          <GoogleLogin
+            onSuccess={async (credentialResponse) => {
+              try {
+                const res = await axios.post("/auth/google", {
+                  token: credentialResponse.credential,
+                });
+                localStorage.setItem("token", res.data.token);
+                alert("Google Login Successful");
+                if (res.data.user.role === "scout") {
+                  navigate("/scouthomepage");
+                } else {
+                  navigate("/playerhomepage");
+                }
+              } catch (err) {
+                console.error("Google Login Error:", err);
+                console.log("Error Details:", err.response?.data);
+                alert(`Google Login Failed: ${err.response?.data?.message || err.message}`);
+              }
+            }}
+            onError={() => {
+              console.log('Login Failed');
+              alert("Google Login Failed");
+            }}
+          />
+        </div>
+
       </motion.form>
       <div className="absolute bottom-0 w-full z-10">
         <Footer />
