@@ -5,7 +5,8 @@ require('dotenv').config();
 const app = express();
 
 // Middleware
-app.use(express.json());
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
 // Enable CORS for your React frontend
 app.use(cors({
@@ -24,10 +25,12 @@ app.use(cors({
 const userRoutes = require('./routes/userroutes');
 const authRoutes = require('./routes/authroutes');
 const protectedRoutes = require('./routes/protectedroute');
+const videoRoutes = require('./routes/videoroutes');
 
 app.use('/api/users', userRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/protected', protectedRoutes);
+app.use('/api/videos', videoRoutes);
 
 // Root route
 app.get('/', (req, res) => {
