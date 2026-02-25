@@ -1,17 +1,12 @@
-
 const express = require('express');
 const router = express.Router();
-const Video = require('../Models/video');
-const auth = require('../middleware/auth');
+const videoController = require('../Controller/videoController');
+const auth = require('../Middleware/authMiddleware');
+const { upload } = require('../utils/cloudinary');
 
-router.post('/upload', auth, async (req, res) => {
-  const { title, url } = req.body;
+// Route: POST /api/videos/upload
+// Description: Upload a video and player details
+// Access: Private (Player)
+router.post('/upload', auth, upload.fields([{ name: 'video', maxCount: 1 }, { name: 'playerImage', maxCount: 1 }]), videoController.uploadVideo);
 
-  try {
-    const newVideo = new Video({ title, url, uploadedBy: req.user.id });
-    await newVideo.save();
-    res.status(201).json({ message: 'Video uploaded', video: newVideo });
-  } catch (err) {
-    res.status(500).json({ message: 'Server error' });
-  }
-});
+module.exports = router;

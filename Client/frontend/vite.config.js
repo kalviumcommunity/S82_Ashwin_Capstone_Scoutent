@@ -13,6 +13,13 @@ export default defineConfig({
         target: 'http://127.0.0.1:5000',
         changeOrigin: true,
         secure: false,
+        timeout: 300000, // 5 minutes
+        proxyTimeout: 300000,
+        configure: (proxy) => {
+          proxy.on('error', (err) => {
+            console.log('Proxy error:', err);
+          });
+        },
       },
     }
   },

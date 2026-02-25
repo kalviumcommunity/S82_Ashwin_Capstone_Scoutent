@@ -104,6 +104,7 @@ exports.googleLogin = async (req, res) => {
     res.status(200).json({ token: jwtToken, user: { id: user._id, email: user.email, role: user.role, name: user.name, picture: user.profilePicture } });
   } catch (err) {
     console.error("Google Login Error:", err);
-    res.status(400).json({ message: 'Google login failed', error: err.message });
+    console.error("Google Login Error Message:", err.message);
+    res.status(400).json({ message: 'Google login failed', error: err.message, details: err });
   }
 };
