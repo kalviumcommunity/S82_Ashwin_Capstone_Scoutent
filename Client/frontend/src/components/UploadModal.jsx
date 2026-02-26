@@ -8,6 +8,8 @@ const UploadModal = ({ isOpen, onClose }) => {
         sport: '',
         position: '',
         age: '',
+        location: '',
+        bio: '',
     });
     const [videoFile, setVideoFile] = useState(null);
     const [imageFile, setImageFile] = useState(null);
@@ -73,6 +75,8 @@ const UploadModal = ({ isOpen, onClose }) => {
         data.append('sport', formData.sport);
         data.append('position', formData.position);
         data.append('age', formData.age);
+        data.append('location', formData.location);
+        data.append('bio', formData.bio);
 
         try {
             const token = localStorage.getItem('token');
@@ -193,6 +197,30 @@ const UploadModal = ({ isOpen, onClose }) => {
                                             placeholder="e.g. 21"
                                         />
                                     </div>
+                                </div>
+
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-700 mb-1">Location (City / Region)</label>
+                                    <input
+                                        type="text"
+                                        name="location"
+                                        value={formData.location}
+                                        onChange={handleChange}
+                                        className="w-full border-b border-gray-300 py-2 focus:outline-none focus:border-black transition-colors text-black"
+                                        placeholder="e.g. Chennai, Tamil Nadu"
+                                    />
+                                </div>
+
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-700 mb-1">Bio / Tagline</label>
+                                    <input
+                                        type="text"
+                                        name="bio"
+                                        value={formData.bio}
+                                        onChange={handleChange}
+                                        className="w-full border-b border-gray-300 py-2 focus:outline-none focus:border-black transition-colors text-black"
+                                        placeholder="e.g. Pacey winger with clinical finishing"
+                                    />
                                 </div>
 
                                 <div>
