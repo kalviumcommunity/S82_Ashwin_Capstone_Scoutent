@@ -20,6 +20,7 @@ export default function LoginPage() {
       const res = await axios.post("/auth/login", formData);
       alert("Login successful");
       localStorage.setItem("token", res.data.token);
+      localStorage.setItem("userName", res.data.user?.name || "");
 
       // Redirect based on role:
       if (res.data.user.role === "scout") {
@@ -92,6 +93,7 @@ export default function LoginPage() {
                   token: credentialResponse.credential,
                 });
                 localStorage.setItem("token", res.data.token);
+                localStorage.setItem("userName", res.data.user?.name || "");
                 alert("Google Login Successful");
                 if (res.data.user.role === "scout") {
                   navigate("/scouthomepage");
