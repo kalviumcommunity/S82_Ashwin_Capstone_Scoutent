@@ -19,6 +19,7 @@ function App() {
         <Route path="/scouthomepage" element={<ScoutHomePage />} />
         <Route path="/messages" element={<MessagesPage />} />
         <Route path="/scoutpoint" element={<ScoutPointPage />} />
+        <Route path="/feed" element={<ScoutHomePage />} />
 
       </Routes>
     </Router>

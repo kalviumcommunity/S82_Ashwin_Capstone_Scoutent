@@ -78,6 +78,24 @@ export default function PlayerHomePage() {
         </svg>
       ),
     },
+    {
+      id: "browse",
+      number: "04",
+      title: "Browse\nVideos",
+      subtitle: "Watch & discover",
+      description:
+        "Explore highlight reels from players across all sports — including your own uploads. See what scouts are watching.",
+      accent: "#ffffff",
+      textAccent: "text-black",
+      bgAccent: "bg-white",
+      action: () => navigate("/feed"),
+      cta: "Watch Now",
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" className="w-10 h-10" stroke="currentColor" strokeWidth={1.5}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 010 1.972l-11.54 6.347a1.125 1.125 0 01-1.667-.986V5.653z" />
+        </svg>
+      ),
+    },
   ];
 
   return (
@@ -161,7 +179,7 @@ export default function PlayerHomePage() {
       {/* ── FEATURE CARDS SECTION ── */}
       <div className="px-6 md:px-12 pb-32">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {features.map((feat, i) => (
               <motion.div
                 key={feat.id}

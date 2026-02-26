@@ -13,6 +13,9 @@ const videoSchema = new mongoose.Schema({
   age: { type: Number },
   position: { type: String },
   playerImageUrl: { type: String },
+  location: { type: String },       // city / region for scouting discovery
+  bio: { type: String },            // one-line tagline shown on the feed card
+  views: { type: Number, default: 0 }, // for "Most Viewed" sort in feed
 
   sport: { type: String, enum: ['football', 'cricket'], required: true },
   tags: [String],
