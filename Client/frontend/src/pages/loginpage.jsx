@@ -21,6 +21,8 @@ export default function LoginPage() {
       alert("Login successful");
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("userName", res.data.user?.name || "");
+      localStorage.setItem("userId", res.data.user?.id || "");
+      localStorage.setItem("userRole", res.data.user?.role || "");
 
       // Redirect based on role:
       if (res.data.user.role === "scout") {
@@ -94,6 +96,8 @@ export default function LoginPage() {
                 });
                 localStorage.setItem("token", res.data.token);
                 localStorage.setItem("userName", res.data.user?.name || "");
+                localStorage.setItem("userId", res.data.user?.id || "");
+                localStorage.setItem("userRole", res.data.user?.role || "");
                 alert("Google Login Successful");
                 if (res.data.user.role === "scout") {
                   navigate("/scouthomepage");

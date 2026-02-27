@@ -26,11 +26,13 @@ const userRoutes = require('./routes/userroutes');
 const authRoutes = require('./routes/authroutes');
 const protectedRoutes = require('./routes/protectedroute');
 const videoRoutes = require('./routes/videoroutes');
+const chatRoutes = require('./routes/chatroutes');
 
 app.use('/api/users', userRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/protected', protectedRoutes);
 app.use('/api/videos', videoRoutes);
+app.use('/api/chat', chatRoutes);
 
 // Root route
 app.get('/', (req, res) => {

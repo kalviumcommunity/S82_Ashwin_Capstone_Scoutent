@@ -4,6 +4,7 @@ import SignUpPage from "./pages/signup";
 import LoginPage from "./pages/loginpage";
 import PlayerHomePage from "./pages/playerHomepage";
 import ScoutHomePage from "./pages/scoutHomepage";
+import ScoutDashboardPage from "./pages/scoutDashboard";
 import MessagesPage from "./pages/MessagesPage";
 import ScoutPointPage from "./pages/scoutpoint";
 
@@ -16,11 +17,13 @@ function App() {
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/playerhomepage" element={<PlayerHomePage />} />
-        <Route path="/scouthomepage" element={<ScoutHomePage />} />
-        <Route path="/messages" element={<MessagesPage />} />
-        <Route path="/scoutpoint" element={<ScoutPointPage />} />
+        {/* Scout dashboard — no upload, scout-appropriate cards */}
+        <Route path="/scouthomepage" element={<ScoutDashboardPage />} />
+        {/* Scout discovery feed */}
         <Route path="/feed" element={<ScoutHomePage />} />
-
+        <Route path="/messages" element={<MessagesPage />} />
+        <Route path="/messages/:userId" element={<MessagesPage />} />
+        <Route path="/scoutpoint" element={<ScoutPointPage />} />
       </Routes>
     </Router>
   );
